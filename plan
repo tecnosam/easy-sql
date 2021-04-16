@@ -1,0 +1,25 @@
+
+[INSERT]
+"INSERT INTO :tbl ( ','.join(:cols) ) VALUES ( ','.join(:vals) )"
+inputs are ( tbl:string, data: dict )
+output is a boolean
+
+[FETCH]
+"SELECT ','.join(:cols)|* FROM :tbl [WHERE ' AND '.join(key=val) :conds] [ORDER BY ','.join(key val) :orders] [LIMIT :lim]"
+inputs are (cols:list, tbl:string, conds: dict, orders: dict, lim: int)
+output is a list of json rows
+
+[UPDATE]
+"UPDATE :tbl SET ( ','.join( node=val ) :updates ) WHERE ' AND '.join(key=val) :cond"
+inputs are ( tbl:string, updates:dict, cond:dict )
+output is a boolean
+
+[DELETE]
+"DELETE FROM :tbl WHERE ' AND '.join(key=val) :cond"
+inputs are ( tbl:string, cond:dict )
+output is a boolean
+
+[TRUNCATE]
+"TRUNCATE :tbl"
+inputs are (tbl:string)
+output is a boolean
